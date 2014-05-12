@@ -31,7 +31,20 @@ function Vector2(x,y){
     
     this.distance = function(x){
         return this.lengthMaker(this.x - x.x, this.y - x.y);
-    }
+    };
+    
+    this.add = function(x){
+        this.x += x.x;
+        this.y += x.y;
+    };
+    this.subtract = function(x){
+        this.x -= x.x;
+        this.y -= x.y;
+    };
+    
+    this.equals = function(x){
+        return this.x === x.x && this.y === x.y;
+    };
     
     this.lengthMaker = function(x,y){
         return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
@@ -63,8 +76,7 @@ function webGLStart(){
     var myVector = new Vector2(2,2);
     var newVector = new Vector2(myVector);
     
-    console.log(myVector);
-    console.log(newVector);
+    console.log(myVector.equals(newVector));
     
     myVector.dX(2);
     console.log(newVector);
