@@ -62,7 +62,25 @@ function Circle(c, radius){
         this.radius = typeof radius !== 'undefined' ? radius : 0;
     }
     
-    
+    this.moveCenter = function(cx, cy){
+       if(cx instanceof Vector2){
+           this.center = this.center.add(cx);
+       }else{
+           this.center = this.center.add(new Vector2(cx,cy));
+       }
+       };
+       
+       this.containsPoint = function(x,y){
+           if(x instanceof Vector2){
+               return this.center.distance(x) <= this.radius;
+           }else{
+               return this.center.distance(new Vector2(x,y)) <= this.radius;
+           }
+       };
+       
+       this.intersects= function(c){
+           return this.center.distance(c.center) <= this.radius+c.radius;
+       };
 }
 
 function KeyBoard(){
