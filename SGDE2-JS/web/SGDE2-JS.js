@@ -83,8 +83,37 @@ function Circle(c, radius){
        };
 }
 
+function Image2D(s){
+    this.compareFunction = function(a,b){
+        
+    };
+}
+
+function ImageCollection(){
+    this.images = [];
+    this.images.sort();
+    
+}
+
+//Keyboard
+var Keys={};//Creating a helping object
 function KeyBoard(){
     
+    this.handleKeyDown = function(event){
+        Keys[event.keyCode]=true;//dynamicly create/call attributes in the Keys object
+        Keys[event.keyChar]=true;
+    };
+    this.handleKeyUp = function(event){
+        Keys[event.keyCode]=false;
+        Keys[event.keyChar]=false;
+    };
+    
+    this.isKeyDown = function(keyCode){
+        return Keys[keyCode] === true;
+    };
+    this.isKeyUp = function(keyCode){
+        return Keys[keyCode] === false;
+    };
 }
 
 
@@ -99,5 +128,10 @@ function webGLStart(){
     myVector.dX(2);
     console.log(newVector);
     console.log(typeof myVector);
+    
+    var k = new KeyBoard();
+    document.onkeydown = k.handleKeyDown;
+    
+    
 }
 
